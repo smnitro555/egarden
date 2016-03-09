@@ -3,12 +3,13 @@ import java.util.stream.IntStream;
 
 public class Egarden {
 	private static Scanner kybd = new Scanner(System.in);
-	private HydroSystem outlet1, outlet2;
-	private static int pump1pin = 15;
-	private static int pump2pin = 18;
-	private static int floatSwitch1 = 21;
-	private static int floatSwitch2 = 24;
-	private static int floatSwitch3 = 26;
+	private HydroSystem outlet1 = new NFT(false);
+	private HydroSystem outlet2 = new NFT(false);
+	public int pump1pin = 15;
+	public int pump2pin = 18;
+	public int floatSwitch1 = 21;
+	public int floatSwitch2 = 24;
+	public int floatSwitch3 = 26;
 
 	public static void main(String args[]) {
 		System.out.println();
@@ -23,7 +24,7 @@ public class Egarden {
 		System.out.println("Float Switch 1 Signal:" + floatSwitch1);
 		System.out.println("Float Switch 2 Signal:" + floatSwitch2);
 		System.out.println("Float Switch 3 Signal:" + floatSwitch3);
-		boolean cont = false; // 
+		boolean cont = false; // This should not be set false, DEBUG
 
 		while (cont)
 			System.out.println("");
@@ -31,14 +32,15 @@ public class Egarden {
 			System.out.println("1. Alter Outlet 1");
 			System.out.println("2. Alter Outlet 2");
 			System.out.println("3. Change Control Signal Pins");
-			System.out.println("4. Exit")
+			System.out.println("4. Exit");
 			int choice = kybd.nextInt();
 			if (choice == 1) {
 				System.out.println("");
+				System.out.println("Changing Outlet 1");
 				System.out.println("What would you like to change?");
 				System.out.println("1. Set System Type");
 				System.out.println("2. Change System Parameters");
-				System.out.println("2. Return to Previous Menu");
+				System.out.println("3. Return to Previous Menu");
 				int decision = kybd.nextInt();
 				if (decision == 1) {
 					System.out.println("");
@@ -46,10 +48,54 @@ public class Egarden {
 					System.out.println("1. NFT System");
 					System.out.println("2. Drip System");
 					System.out.println("3. Ebb and Flow");
+					System.out.println("4. Return to Previous Menu");
+					int decisionSystemType = kybd.nextInt();
+					if (decisionSystemType == 1) {
+						outlet1 = new NFT(true);
+					} else if (decisionSystemType == 2) {
+						outlet1 = new Drip(true);
+					} else if (decisionSystemType == 3) {
+						outlet1 = new EbbnFlow(true);
+					} else {
+
+					}
+				} else if (decision == 2) {
+					outlet1.adjustSystemParam();
 				} else {
-					
+
 				}
+
 			} else if (choice == 2) {
+				System.out.println("");
+				System.out.println("Changing Outlet 2");
+				System.out.println("What would you like to change?");
+				System.out.println("1. Set System Type");
+				System.out.println("2. Change System Parameters");
+				System.out.println("3. Return to Previous Menu");
+				int decision = kybd.nextInt();
+				if (decision == 1) {
+					System.out.println("");
+					System.out.println("What System would you like to set up?");
+					System.out.println("1. NFT System");
+					System.out.println("2. Drip System");
+					System.out.println("3. Ebb and Flow");
+					System.out.println("4. Return to Previous Menu");
+					int decisionSystemType = kybd.nextInt();
+					if (decisionSystemType == 1) {
+						outlet2 = new NFT(true);
+					} else if (decisionSystemType == 2) {
+						outlet2 = new Drip(true);
+					} else if (decisionSystemType == 3) {
+						outlet2 = new EbbnFlow(true);
+					} else {
+
+					}
+				} else if (decision == 2) {
+					outlet2.adjustSystemParam();
+				} else {
+
+				}
+
 				
 			} else if (choice == 3) {
 				System.out.println("");

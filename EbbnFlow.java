@@ -8,8 +8,11 @@ import com.pi4j.io.gpio.event.GpioPinListenerDigital;
 
 public class EbbnFlow extends HydroSystem {
 	
-	public EbbnFlow() {
-
+	public EbbnFlow(boolean condition) {
+		if (condition) {
+			System.out.println("Setting up Ebb and Flow System");
+			adjustSystemParam();
+		}
 	}
 
 	public void initiateSystem() {

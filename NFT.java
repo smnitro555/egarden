@@ -7,13 +7,22 @@ import com.pi4j.io.gpio.event.GpioPinDigitalStateChangeEvent;
 import com.pi4j.io.gpio.event.GpioPinListenerDigital;
 
 public class NFT extends HydroSystem {
-	
-	public NFT() {
+	private int pumpPin = 0;
+	private int waterLevelPin = 0;
+
+	public NFT(boolean condition) {
+		if (condition) {
+			System.out.println("Setting up Drip System");
+			adjustSystemParam();
+		}		
+	}
+
+	public void initiateSystem(int pumpSetPin, int waterLevelSetpin) {
 
 	}
 
-	public void initiateSystem() {
-
+	public void initiateSystem(int pumpSetPin) {
+		
 	}
 
 	public void adjustSystemParam() {
