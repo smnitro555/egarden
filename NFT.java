@@ -6,10 +6,21 @@ import com.pi4j.io.gpio.RaspiPin;
 import com.pi4j.io.gpio.event.GpioPinDigitalStateChangeEvent;
 import com.pi4j.io.gpio.event.GpioPinListenerDigital;
 
+/**
+* A Class for NFT System
+* @author ESW
+* @version 1
+*/
 public class NFT extends HydroSystem implements Runnable {
 	private int pumpPin = 0;
 	private int waterLevelPin = 0;
 
+    /**
+    * EbbnFlow System Object Constructor
+    * @param condition Whether to create system or placeholder
+    * @param pumpSetPin Pin number for Pump Control
+    * @param waterLevelSetpin Pin number of Water Low Level Set Pin
+    */	
 	public NFT(boolean condition, int pumpSetPin, int waterLevelSetpin) {
 		if (condition) {
 			System.out.println("Setting up Drip System");

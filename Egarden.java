@@ -173,6 +173,9 @@ public class Egarden {
 		}				
 	}
 
+    /**
+    * Initiate's the system based on user input and system type
+    */
 	private void initiateSystem(int outletNumber, int systemType) {
 		System.out.println();
 		System.out.println("Which pump would you like to use?");
@@ -215,6 +218,10 @@ public class Egarden {
 		}
 	}
 
+    /**
+    * Goes through dialogue of setting up which pin is going to be used
+    * @return Sensor Pin Number that has been selected by user
+    */
 	private int sensorAssignment() {
 		System.out.println();
 		System.out.println("1. Float Switch 1 Signal (Currently on Pin " + floatSwitch1 + ")");	
