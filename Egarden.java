@@ -51,11 +51,11 @@ public class Egarden {
 					System.out.println("4. Return to Previous Menu");
 					int decisionSystemType = kybd.nextInt();
 					if (decisionSystemType == 1) {
-						outlet1 = new NFT(true);
+						initiateSystem(1,1);
 					} else if (decisionSystemType == 2) {
-						outlet1 = new Drip(true);
+						initiateSystem(1,2);
 					} else if (decisionSystemType == 3) {
-						outlet1 = new EbbnFlow(true);
+						initiateSystem(1,3);
 					} else {
 
 					}
@@ -64,7 +64,6 @@ public class Egarden {
 				} else {
 
 				}
-
 			} else if (choice == 2) {
 				System.out.println("");
 				System.out.println("Changing Outlet 2");
@@ -82,11 +81,11 @@ public class Egarden {
 					System.out.println("4. Return to Previous Menu");
 					int decisionSystemType = kybd.nextInt();
 					if (decisionSystemType == 1) {
-						outlet2 = new NFT(true);
+						initiateSystem(2,1);
 					} else if (decisionSystemType == 2) {
-						outlet2 = new Drip(true);
+						initiateSystem(2,2);
 					} else if (decisionSystemType == 3) {
-						outlet2 = new EbbnFlow(true);
+						initiateSystem(2,3);
 					} else {
 
 					}
@@ -95,8 +94,6 @@ public class Egarden {
 				} else {
 
 				}
-
-				
 			} else if (choice == 3) {
 				System.out.println("");
 				System.out.println("Which Pin Would you like to edit?");
@@ -143,7 +140,7 @@ public class Egarden {
  	* @param Int of the new proposed pin number, int assigning which sensor to reconfigure
  	* @return void 
  	*/
-	private static void validateSignalPin(int pinAssignment, int pinControlNumber) {
+	private void validateSignalPin(int pinAssignment, int pinControlNumber) {
 		int[] rpiSignalPins = {2, 3, 4, 17, 27, 22, 10, 9, 11, 5, 6, 13, 19, 26, 14, 15, 18, 23, 24, 25, 8, 7, 12, 16, 20, 21};
 		boolean contains = IntStream.of(rpiSignalPins).anyMatch(x -> x == 4);
 		if (contains) {
@@ -160,7 +157,7 @@ public class Egarden {
  	* @param Int of the new proposed pin number, int assigning which sensor to reconfigure
  	* @return void 
  	*/
-	private static void changeSignalPin(int pinAssignment, int pinControlNumber) {
+	private void changeSignalPin(int pinAssignment, int pinControlNumber) {
 		if (pinNumber == 1) {
 			pump1pin = pinAssignment;
 		} else if (pinNumber == 2) {
@@ -173,7 +170,67 @@ public class Egarden {
 			floatSwitch3 = pinAssignment;
 		} else {
 			System.out.println("Error: Did not Change Pin Assignment");
+		}				
+	}
+
+	private void initiateSystem(int outletNumber, int systemType) {
+		System.out.println();
+		System.out.println("Which pump would you like to use?");
+		System.out.println("1. Pump 1 Pin is on:" + pump1pin);
+		System.out.println("2. Pump 2 Pin is on:" + pump2pin);
+		System.out.println("3. Exit");
+		int pumpDecision = kybd.nextInt;
+		if (pumpDecision == 1) {
+			if (systemType == 1) {
+				System.out.println("What pin will be used for Water Low Level Detection?");
+				int waterSensorPin = sensorAssignment();
+				outlet1 = new NFT(true, 1, waterSensorPin);
+			} else if (systemType == 2) {
+				System.out.println("What pin will be used for Water Low Level Detection?");
+				int waterSensorPin = sensorAssignment();
+				outlet1 = new Drip(true, 1, waterSensorPin);				
+			} else if (systemType == 3) {
+				System.out.println("What pin will be used for Water Low Level Detection?");
+				int waterSensorPin = sensorAssignment();
+				System.out.println("What pin will be used for High Water Detection?");
+				int waterHeightPin = sensorAssignment();
+				outlet1 = new EbbnFlow(true, 1, waterSensorPin, waterHeightPin);				
+			}
+		} else if (pumpDecision == 2) {
+			if (systemType == 1) {
+				System.out.println("What pin will be used for Water Low Level Detection?");
+				int waterSensorPin = sensorAssignment();
+				outlet2 = new NFT(true, 2, waterSensorPin);
+			} else if (systemType == 2) {
+				System.out.println("What pin will be used for Water Low Level Detection?");
+				int waterSensorPin = sensorAssignment();
+				outlet2 = new Drip(true, 2, waterSensorPin);				
+			} else if (systemType == 3) {
+				System.out.println("What pin will be used for Water Low Level Detection?");
+				int waterSensorPin = sensorAssignment();
+				System.out.println("What pin will be used for High Water Detection?");
+				int waterHeightPin = sensorAssignment();
+				outlet2 = new EbbnFlow(true, 2, waterSensorPin, waterHeightPin);				
+			}				
 		}
-					
+	}
+
+	private int sensorAssignment() {
+		System.out.println();
+		System.out.println("1. Float Switch 1 Signal (Currently on Pin " + floatSwitch1 + ")");	
+		System.out.println("2. Float Switch 2 Signal (Currently on Pin " + floatSwitch2 + ")");	
+		System.out.println("3. Float Switch 3 Signal (Currently on Pin " + floatSwitch3 + ")");
+		int floatKeyboard = kybd.nextInt();
+		int returning = 0;
+		if (floatKeyboard == 1) {
+			returning = floatSwitch1;
+		} else if (floatKeyboard == 2) {
+			returning = floatSwitch2;
+		} else if (floatKeyboard == 3) {
+			returning = floatSwitch3;
+		} else {
+			System.out.println("Input not Valid")
+		}
+		return returning;
 	}
 }

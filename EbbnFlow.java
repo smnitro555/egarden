@@ -6,9 +6,9 @@ import com.pi4j.io.gpio.RaspiPin;
 import com.pi4j.io.gpio.event.GpioPinDigitalStateChangeEvent;
 import com.pi4j.io.gpio.event.GpioPinListenerDigital;
 
-public class EbbnFlow extends HydroSystem {
+public class EbbnFlow extends HydroSystem implements Runnable {
 	
-	public EbbnFlow(boolean condition) {
+	public EbbnFlow(boolean condition, int pumpSetPin, int waterLevelSetpin, int waterHighPin) {
 		if (condition) {
 			System.out.println("Setting up Ebb and Flow System");
 			adjustSystemParam();

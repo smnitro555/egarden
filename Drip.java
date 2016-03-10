@@ -6,7 +6,7 @@ import com.pi4j.io.gpio.RaspiPin;
 import com.pi4j.io.gpio.event.GpioPinDigitalStateChangeEvent;
 import com.pi4j.io.gpio.event.GpioPinListenerDigital;
 
-public class Drip extends HydroSystem {
+public class Drip extends HydroSystem implements Runnable {
 	private int timeOn = 0;
 	private int timeOff = 0;
 	private int pumpPin = 0;
