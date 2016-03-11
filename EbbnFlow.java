@@ -6,10 +6,25 @@ import com.pi4j.io.gpio.RaspiPin;
 import com.pi4j.io.gpio.event.GpioPinDigitalStateChangeEvent;
 import com.pi4j.io.gpio.event.GpioPinListenerDigital;
 
-public class EbbnFlow extends HydroSystem {
-	
-	public EbbnFlow() {
+/**
+* A Class for Ebb and Flow System
+* @author ESW
+* @version 1
+*/
+public class EbbnFlow extends HydroSystem implements Runnable {
 
+    /**
+    * EbbnFlow System Object Constructor
+    * @param condition Whether to create system or placeholder
+    * @param pumpSetPin Pin number for Pump Control
+    * @param waterLevelSetpin Pin number of Water Low Level Set Pin
+    * @param waterHighPin Water High Level detection for Ebb and Flow System
+    */	
+	public EbbnFlow(boolean condition, int pumpSetPin, int waterLevelSetpin, int waterHighPin) {
+		if (condition) {
+			System.out.println("Setting up Ebb and Flow System");
+			adjustSystemParam();
+		}
 	}
 
 	public void initiateSystem() {
