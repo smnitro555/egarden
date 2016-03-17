@@ -11,7 +11,7 @@ import com.pi4j.io.gpio.event.GpioPinListenerDigital;
 * @author ESW
 * @version 1
 */
-public class NFT extends HydroSystem implements Runnable {
+public class NFT extends HydroSystem {
 	private int pumpPin = 0;
 	private int waterLevelPin = 0;
 

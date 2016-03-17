@@ -11,7 +11,7 @@ import com.pi4j.io.gpio.event.GpioPinListenerDigital;
 * @author ESW
 * @version 1
 */
-public class EbbnFlow extends HydroSystem implements Runnable {
+public class EbbnFlow extends HydroSystem {
 
     /**
     * EbbnFlow System Object Constructor

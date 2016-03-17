@@ -1,21 +1,14 @@
-import com.pi4j.io.gpio.GpioController;
-import com.pi4j.io.gpio.GpioFactory;
-import com.pi4j.io.gpio.GpioPinDigitalInput;
-import com.pi4j.io.gpio.PinPullResistance;
-import com.pi4j.io.gpio.RaspiPin;
-import com.pi4j.io.gpio.event.GpioPinDigitalStateChangeEvent;
-import com.pi4j.io.gpio.event.GpioPinListenerDigital;
-
 /**
 * A Class for Drip System
 * @author ESW
 * @version 1
 */
-public class Drip extends HydroSystem implements Runnable {
+public class Drip extends HydroSystem {
 	private int timeOn = 0;
 	private int timeOff = 0;
 	private int pumpPin = 0;
 	private int waterLevelPin = 0;
+	private DripRunnable dripSystem;
 
     /**
     * Drip System Object Constructor
@@ -29,7 +22,8 @@ public class Drip extends HydroSystem implements Runnable {
 	}
 
 	public void initiateSystem() {
-
+		dripSystem = new DripRunnable(timeOn, timeOff);
+		dripSystem.start();
 	}
 
 	public void adjustSystemParam() {
@@ -37,7 +31,7 @@ public class Drip extends HydroSystem implements Runnable {
 	}
 
 	public void terminateSystem() {
-		
+		dripSystem.stop();
 	}
 
 }
