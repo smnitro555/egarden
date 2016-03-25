@@ -9,7 +9,7 @@ public class StateObject {
 
 	}
 
-	public void stop(boolean cond) {
+	public void stop() {
 		condition = false;
 	}
 
