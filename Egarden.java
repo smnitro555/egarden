@@ -26,7 +26,7 @@ public class Egarden {
 		System.out.println("Float Switch 3 Signal:" + floatSwitch3);
 		boolean cont = false; // This should not be set false, DEBUG
 
-		while (cont)
+		while (cont) {
 			System.out.println("");
 			System.out.println("What would you like to do?");
 			System.out.println("1. Alter Outlet 1");
@@ -34,105 +34,77 @@ public class Egarden {
 			System.out.println("3. Change Control Signal Pins");
 			System.out.println("4. Exit");
 			int choice = kybd.nextInt();
-			if (choice == 1) {
-				System.out.println("");
-				System.out.println("Changing Outlet 1");
-				System.out.println("What would you like to change?");
-				System.out.println("1. Set System Type");
-				System.out.println("2. Change System Parameters");
-				System.out.println("3. Return to Previous Menu");
-				int decision = kybd.nextInt();
-				if (decision == 1) {
+			switch (choice) {
+				case 1:
 					System.out.println("");
-					System.out.println("What System would you like to set up?");
-					System.out.println("1. NFT System");
-					System.out.println("2. Drip System");
-					System.out.println("3. Ebb and Flow");
-					System.out.println("4. Return to Previous Menu");
-					int decisionSystemType = kybd.nextInt();
-					if (decisionSystemType == 1) {
-						initiateSystem(1,1);
-					} else if (decisionSystemType == 2) {
-						initiateSystem(1,2);
-					} else if (decisionSystemType == 3) {
-						initiateSystem(1,3);
-					} else {
-
-					}
-				} else if (decision == 2) {
-					outlet1.adjustSystemParam();
-				} else {
-
-				}
-			} else if (choice == 2) {
-				System.out.println("");
-				System.out.println("Changing Outlet 2");
-				System.out.println("What would you like to change?");
-				System.out.println("1. Set System Type");
-				System.out.println("2. Change System Parameters");
-				System.out.println("3. Return to Previous Menu");
-				int decision = kybd.nextInt();
-				if (decision == 1) {
+					System.out.println("Changing Outlet 1");
+					System.out.println("What would you like to change?");
+					System.out.println("1. Set System Type");
+					System.out.println("2. Change System Parameters");
+					System.out.println("3. Return to Previous Menu");
+					int decision = kybd.nextInt();
+					switch (decision) {
+						case 1:
+							System.out.println("");
+							System.out.println("What System would you like to set up?");
+							System.out.println("1. NFT System");
+							System.out.println("2. Drip System");
+							System.out.println("3. Ebb and Flow");
+							System.out.println("4. Return to Previous Menu");
+							int decisionSystemType = kybd.nextInt();
+							initiateSystem(choice, decisionSystemType);
+						case 2:
+							outlet1.adjustSystemParam();
+							break;
+						}
+					break;
+				case 2:
 					System.out.println("");
-					System.out.println("What System would you like to set up?");
-					System.out.println("1. NFT System");
-					System.out.println("2. Drip System");
-					System.out.println("3. Ebb and Flow");
-					System.out.println("4. Return to Previous Menu");
-					int decisionSystemType = kybd.nextInt();
-					if (decisionSystemType == 1) {
-						initiateSystem(2,1);
-					} else if (decisionSystemType == 2) {
-						initiateSystem(2,2);
-					} else if (decisionSystemType == 3) {
-						initiateSystem(2,3);
-					} else {
+					System.out.println("Changing Outlet 2");
+					System.out.println("What would you like to change?");
+					System.out.println("1. Set System Type");
+					System.out.println("2. Change System Parameters");
+					System.out.println("3. Return to Previous Menu");
+					int decision = kybd.nextInt();
+					switch (decision) {
+						case 1:
+							System.out.println("");
+							System.out.println("What System would you like to set up?");
+							System.out.println("1. NFT System");
+							System.out.println("2. Drip System");
+							System.out.println("3. Ebb and Flow");
+							System.out.println("4. Return to Previous Menu");
+							int decisionSystemType = kybd.nextInt();
+							initiateSystem(choice, decisionSystemType);
 
+							break;
+						case 2:
+							outlet2.adjustSystemParam();
+							break;
 					}
-				} else if (decision == 2) {
-					outlet2.adjustSystemParam();
-				} else {
-
-				}
-			} else if (choice == 3) {
-				System.out.println("");
-				System.out.println("Which Pin Would you like to edit?");
-				System.out.println("1. Pump 1 Control Signal (Currently on Pin " + pump1pin + ")");	
-				System.out.println("2. Pump 2 Control Signal (Currently on Pin " + pump2pin + ")");	
-				System.out.println("3. Float Switch 1 Signal (Currently on Pin " + floatSwitch1 + ")");	
-				System.out.println("4. Float Switch 2 Signal (Currently on Pin " + floatSwitch2 + ")");	
-				System.out.println("5. Float Switch 3 Signal (Currently on Pin " + floatSwitch3 + ")");
-				System.out.println("6. Return to Previous Menu");
-				int signalEdit = kybd.nextInt();
-				if (signalEdit == 1) {
-					System.out.println("Editing Pump 1 Control Signal Pin");
+					break;
+				case 3:
+					System.out.println("");
+					System.out.println("Which Pin Would you like to edit?");
+					System.out.println("1. Pump 1 Control Signal (Currently on Pin " + pump1pin + ")");	
+					System.out.println("2. Pump 2 Control Signal (Currently on Pin " + pump2pin + ")");	
+					System.out.println("3. Float Switch 1 Signal (Currently on Pin " + floatSwitch1 + ")");	
+					System.out.println("4. Float Switch 2 Signal (Currently on Pin " + floatSwitch2 + ")");	
+					System.out.println("5. Float Switch 3 Signal (Currently on Pin " + floatSwitch3 + ")");
+					System.out.println("6. Return to Previous Menu");
+					int signalEdit = kybd.nextInt();
+					System.out.format("Editing Pump %d Control Signal Pin", signalEdit);
 					System.out.println("What is the new pin assignment?");
-					validateSignalPin(signalEdit, 1);
-				} else if (signalEdit == 2) {
-					System.out.println("Editing Pump 2 Control Signal Pin");
-					System.out.println("What is the new pin assignment?");
-					validateSignalPin(signalEdit, 2);					
-				} else if (signalEdit == 3) {
-					System.out.println("Editing Float Switch 1 Control Signal Pin");
-					System.out.println("What is the new pin assignment?");
-					validateSignalPin(signalEdit, 3);					
-				} else if (signalEdit == 4) {
-					System.out.println("Editing Float Switch 2 Control Signal Pin");
-					System.out.println("What is the new pin assignment?");
-					validateSignalPin(signalEdit, 4);						
-				} else if (signalEdit == 5) {
-					System.out.println("Editing Float Switch 3 Control Signal Pin");
-					System.out.println("What is the new pin assignment?");
-					validateSignalPin(signalEdit, 5);						
-				} else {
-					
-				}
-			} else if (choice == 4) {
-				cont = false;
-			} else {
-				cont = true;
+					validateSignalPin(signalEdit, signalEdit);
+					break;
+				case 4:
+					cont = false;
+					break;
+				default:
+					cont = true;
+					break;
 			}
-	}
+		}
 
 	/**
  	* Validates that the proposed pin number is valid, upon which pin assignment will occur
@@ -158,18 +130,24 @@ public class Egarden {
  	* @return void 
  	*/
 	private void changeSignalPin(int pinAssignment, int pinControlNumber) {
-		if (pinNumber == 1) {
-			pump1pin = pinAssignment;
-		} else if (pinNumber == 2) {
-			pump2pin = pinAssignment;
-		} else if (pinNumber == 3) {
-			floatSwitch1 = pinAssignment;
-		} else if (pinNumber == 4) {
-			floatSwitch2 = pinAssignment;
-		} else if (pinNumber == 5) {
-			floatSwitch3 = pinAssignment;
-		} else {
-			System.out.println("Error: Did not Change Pin Assignment");
+		switch (pinNumber) {
+			case 1:
+				pump1pin = pinAssignment;
+				break;
+			case 2:
+				pump2pin = pinAssignment;
+				break;
+			case 3:
+				floatSwitch1 = pinAssignment;
+				break;
+			case 4:
+				floatSwitch2 = pinAssignment;
+				break;
+			case 5:
+				floatSwitch3 = pinAssignment;
+				break;
+			default:
+				System.out.println("Error: Did not Change Pin Assignment");
 		}				
 	}
 
@@ -183,38 +161,39 @@ public class Egarden {
 		System.out.println("2. Pump 2 Pin is on:" + pump2pin);
 		System.out.println("3. Exit");
 		int pumpDecision = kybd.nextInt;
-		if (pumpDecision == 1) {
-			if (systemType == 1) {
-				System.out.println("What pin will be used for Water Low Level Detection?");
-				int waterSensorPin = sensorAssignment();
-				outlet1 = new NFT(true, 1, waterSensorPin);
-			} else if (systemType == 2) {
-				System.out.println("What pin will be used for Water Low Level Detection?");
-				int waterSensorPin = sensorAssignment();
-				outlet1 = new Drip(true, 1, waterSensorPin);				
-			} else if (systemType == 3) {
-				System.out.println("What pin will be used for Water Low Level Detection?");
-				int waterSensorPin = sensorAssignment();
-				System.out.println("What pin will be used for High Water Detection?");
-				int waterHeightPin = sensorAssignment();
-				outlet1 = new EbbnFlow(true, 1, waterSensorPin, waterHeightPin);				
-			}
-		} else if (pumpDecision == 2) {
-			if (systemType == 1) {
-				System.out.println("What pin will be used for Water Low Level Detection?");
-				int waterSensorPin = sensorAssignment();
-				outlet2 = new NFT(true, 2, waterSensorPin);
-			} else if (systemType == 2) {
-				System.out.println("What pin will be used for Water Low Level Detection?");
-				int waterSensorPin = sensorAssignment();
-				outlet2 = new Drip(true, 2, waterSensorPin);				
-			} else if (systemType == 3) {
-				System.out.println("What pin will be used for Water Low Level Detection?");
-				int waterSensorPin = sensorAssignment();
-				System.out.println("What pin will be used for High Water Detection?");
-				int waterHeightPin = sensorAssignment();
-				outlet2 = new EbbnFlow(true, 2, waterSensorPin, waterHeightPin);				
-			}				
+		switch(pumpDecision) {
+			System.out.println("What pin will be used for Water Low Level Detection?");
+			int waterSensorPin = sensorAssignment();
+			case 1:
+				switch (systemType) {
+				case 1:				
+					outlet1 = new NFT(true, 1, waterSensorPin);
+					break;
+				case 2:
+					outlet1 = new Drip(true, 1, waterSensorPin);
+					break;			
+				case 3:
+					System.out.println("What pin will be used for High Water Detection?");
+					int waterHeightPin = sensorAssignment();
+					outlet1 = new EbbnFlow(true, 1, waterSensorPin, waterHeightPin);
+					break;			
+				}
+				break;
+			case 2:
+				switch (systemType) {
+					case 1:
+						outlet2 = new NFT(true, 2, waterSensorPin);
+						break;
+					case 2:
+						outlet2 = new Drip(true, 2, waterSensorPin);
+						break;				
+					case 3:
+						System.out.println("What pin will be used for High Water Detection?");
+						int waterHeightPin = sensorAssignment();
+						outlet2 = new EbbnFlow(true, 2, waterSensorPin, waterHeightPin);
+						break;				
+				}
+				break;		
 		}
 	}
 
@@ -229,15 +208,20 @@ public class Egarden {
 		System.out.println("3. Float Switch 3 Signal (Currently on Pin " + floatSwitch3 + ")");
 		int floatKeyboard = kybd.nextInt();
 		int returning = 0;
-		if (floatKeyboard == 1) {
-			returning = floatSwitch1;
-		} else if (floatKeyboard == 2) {
-			returning = floatSwitch2;
-		} else if (floatKeyboard == 3) {
-			returning = floatSwitch3;
-		} else {
-			System.out.println("Input not Valid")
-		}
+			switch (floatKeyboard) {
+				case 1:
+					returning = floatSwitch1;
+					break;
+				case 2:
+					returning = floatSwitch2;
+					break;
+				case 3:
+					returning = floatSwitch3;
+					break;
+				default:
+					System.out.println("Input not Valid");
+					break;
+			}
 		return returning;
 	}
 }
