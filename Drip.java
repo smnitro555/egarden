@@ -8,6 +8,7 @@
 * in the DripRunnable or DripThread threads!
 */
 public class Drip extends HydroSystem {
+	private static Scanner kybd = new Scanner(System.in);
 	private int timeOn = 0;
 	private int timeOff = 0;
 	private int pumpPin = 0;
@@ -39,7 +40,16 @@ public class Drip extends HydroSystem {
     * drip system. 
     */
 	public void adjustSystemParam() {
-
+		System.out.println("What parameters of the Drip System would you like to change?");
+		System.out.println("1. Time System is On");
+		System.out.println("2. Time System is Off");
+		System.out.println("3. Pump Controlling pin")
+		System.out.println("4. Water Level Shutoff Pin (Float Switch)");
+		int choice = kybd.nextInt();
+		switch (choice) {
+			case 1:
+				System.out.println()
+		}
 	}
 
     /**
@@ -47,6 +57,23 @@ public class Drip extends HydroSystem {
     */
 	public void terminateSystem() {
 		dripSystem.stop();
+	}
+
+		/**
+ 	* Validates that the proposed pin number is valid, upon which pin assignment will occur
+ 	*
+ 	* @param Int of the new proposed pin number, int assigning which sensor to reconfigure
+ 	* @return void 
+ 	*/
+	private void validateSignalPin(int pinAssignment, int pinControlNumber) {
+		int[] rpiSignalPins = {2, 3, 4, 17, 27, 22, 10, 9, 11, 5, 6, 13, 19, 26, 14, 15, 18, 23, 24, 25, 8, 7, 12, 16, 20, 21};
+		boolean contains = IntStream.of(rpiSignalPins).anyMatch(x -> x == 4);
+		if (contains) {
+			changeSignalPin(pinAssignment, pinControlNumber);
+		} else {
+			System.out.println("Invalid Signal Pin Assignment!");
+			System.out.println("Please reference the Raspberry Pi Documentation");
+		}
 	}
 
 }
