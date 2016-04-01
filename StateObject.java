@@ -1,3 +1,12 @@
+/**
+* A Class Used to Control the State of Threads
+* @author ESW
+* @version 1
+*
+* The state object can be used to terminate threads from other threads
+* since the continuing/terminating condition is contained within the boolean
+* of the state object
+*/
 public class StateObject {
 	boolean condition;
 
@@ -5,11 +14,11 @@ public class StateObject {
 		condition = cond;
 	}
 
-	public void start() {
-
+	public void setTrue() {
+		condition = true;
 	}
 
-	public void stop() {
+	public void setFalse() {
 		condition = false;
 	}
 
